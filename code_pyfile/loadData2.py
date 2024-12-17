@@ -1,8 +1,8 @@
 import scipy.io as sio
 import os
 import numpy as np
-from code_pyfile.getLabs2 import get_beh
-from code_pyfile.scaling import normalize
+from getLabs2 import get_beh
+from scaling import normalize
 from sklearn.model_selection import train_test_split
 from math import floor
 from tqdm import tqdm

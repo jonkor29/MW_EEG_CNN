@@ -1,8 +1,8 @@
 import scipy.io as sio
 import os
 import numpy as np
-from code_pyfile.getLabs1 import get_beh
-from code_pyfile.scaling import normalize
+from getLabs1 import get_beh
+from scaling import normalize
 from sklearn.model_selection import train_test_split
 from math import floor
 from tqdm import tqdm
@@ -41,10 +41,9 @@ def load_dataset(sub, task, feat, conds, nBacks, norm = False, sidx = 'all',
                  gpu2use = -1, sessions = [1,2]):
 
     for ss in sessions:
-        
+
         ci = 0  # ci can be smaller than condi if some classes are missing in one dataset
         for condi in range(len(conds)):
-            
             if isinstance(nBacks, list):
                 beh = get_beh(sub, task, nBacks[condi], [ss])
             else:
@@ -53,13 +52,11 @@ def load_dataset(sub, task, feat, conds, nBacks, norm = False, sidx = 'all',
             cond = conds[condi]
             triallist = beh[beh['state']==cond][['urevent','session']]
             ntrial = triallist.shape[0]
-
             if ntrial == 0:
                 continue
 
             ti = 0  # ti can be smaller than triali if some trials have been skipped
             for triali in range(ntrial):
-
                 trialname = triallist.iloc[triali,0]
                 trialname = str(int(trialname)).zfill(4)
                 if triallist.iloc[triali,1] == 1:
@@ -71,6 +68,7 @@ def load_dataset(sub, task, feat, conds, nBacks, norm = False, sidx = 'all',
                 if os.path.exists(f_load):  # skip noisy trials, which are removed during preprocessing
                     mat = sio.loadmat(f_load)['data']
                 else:
+                    raise Exception("f_load does not exist")
                     continue
 
                 # downsample some features
@@ -120,10 +118,8 @@ def load_dataset(sub, task, feat, conds, nBacks, norm = False, sidx = 'all',
                         y_temp = np.append(y_temp, condi)
 
                 ti += 1
-
             if ti == 0: # if trials in the triallist are all removed during preprocessing
                 continue
-
             if ci == 0:
                 x = x_temp.copy()
                 y = y_temp.copy()
@@ -140,7 +136,6 @@ def load_dataset(sub, task, feat, conds, nBacks, norm = False, sidx = 'all',
         # normalize intra-session
         if isinstance(norm, str):
             x = normalize(x, norm)
-
         if ss == sessions[0]:
             x_all = x.copy()
             y_all = y.copy()
