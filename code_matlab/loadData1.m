@@ -6,10 +6,10 @@ function eeg = loadData1(sub, timewin, chans)
 % .data: nChan x nPnt x nTrial
 % .sub, .times, .chans, .srate
 
-f_main = fullfile(fileparts(which('mind_wandering_root')),'3data');
+f_main = fullfile('C:\Users\jonasjko\Projects\MW_EEG_CNN\3data');
 
 % load pars
-load(fullfile(f_main,'pars'), 'times', 'chanlocs')
+load(fullfile(f_main,'pars.mat'), 'times', 'chanlocs')
 
 % defaults
 if nargin < 2 || isempty(timewin)

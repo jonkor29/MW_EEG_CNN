@@ -18,13 +18,12 @@ if ROSAon
         gpuDevice(gpu2use)
     end   
 end
-
-f_main = fullfile(fileparts(which('mind_wandering_root')),'3data3');
+f_main = fullfile('C:\Users\jonasjko\Projects\MW_EEG_CNN\3data');
 f_out  = fullfile(f_main, 'feats_matfile');
 cd(f_main)
 
 % - general - 
-studies = 2;
+studies = 1;
 %studies = [1 2];
 baseline = [-200 0];  % [] to turn off
 timewin = [-400 1000];
@@ -33,8 +32,8 @@ features = {'raw'};
 %features = {'raw', 'Wst', 'power', 'ISPC'};
 % load(fullfile(fileparts(which('mind_wandering_root')),'3data','pars_data3'),'subs2use')
 %subs = {subs2use};
-%subs = {1:30, 301:330}; % following the study order
-subs = {301:330};
+subs = {1:30, 301:330}; % following the study order
+%subs = {301:330};
 
 % - TF analysis setting - 
 fRange_power = [4 40];
