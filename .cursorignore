@@ -1,0 +1,6 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+3data/
+3data2/
+.git
+!code_matlab
+!code_pyfile
