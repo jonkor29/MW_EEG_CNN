@@ -5,3 +5,5 @@
 3data/preprocessing/
 3data/raw/
 **/feats_matfile/
+*.npz
+**/*.npz
