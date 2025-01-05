@@ -7,3 +7,4 @@
 **/feats_matfile/
 *.npz
 **/*.npz
+.env
