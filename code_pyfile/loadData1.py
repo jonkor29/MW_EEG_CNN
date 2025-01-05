@@ -24,7 +24,7 @@ if locs16On:
     locs = sio.loadmat('pars_stFeats.mat')['locs16_32'][0] - 1
 
 if plocs16On:
-    plocs = sio.loadmat('pars_stFeats.mat')['plocs16_32'].T[0] - 1
+    plocs = sio.loadmat('/cluster/home/jonasjko/prosjektoppgave/MW_EEG_CNN/code_pyfile/pars_stFeats.mat')['plocs16_32'].T[0] - 1
 
 if flocsOn:
     flocs = sio.loadmat('pars_stFeats.mat')['flocs'].T[0] - 1
