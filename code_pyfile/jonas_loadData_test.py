@@ -27,7 +27,7 @@ if input('Do you want to create and save a new full dataset? (y/n)') == 'y':
 if input('Do you want to create and save a new dataset subject and task-wise? (y/n)') == 'y':
     with h5py.File('loaded_dataset_subject_task_wise.h5', 'w') as h5f:
         for sub in subs:
-            sub_group = h5f.create_group(f'Subject_{sub}')
+            sub_group = h5f.create_group(f'{sub}')
             for task in tasks:
                 print(f"  Loading Subject {sub}, Task '{task}'...")
                 xs, ys, ss = ld1.load_dataset_n_tasks( [sub], [task], [input_type], conds, winlens=10, norm=False, sidx='all', gpu2use=gpu2use)
@@ -75,8 +75,8 @@ if input('Do you want to load dataset and display info about it? (y/n)') == 'y':
 
     if input('Do you want to load the h5 dataset? (y/n)') == 'y':
         with h5py.File('loaded_dataset_subject_task_wise.h5', 'r') as h5f:
-            for sub in h5f.keys():
-                for task in h5f[sub].keys():
+            for sub in subs:
+                for task in tasks:
                     X = h5f[f'{sub}/{task}/X'][:]
                     y = h5f[f'{sub}/{task}/y'][:]
                     s = h5f[f'{sub}/{task}/s'][:]
